@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exam Paper Checker</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h1>Subjects</h1>
+        </div>
+
+        <form id="new-subject-form" class="subject-form">
+          <label>
+            Subject name
+            <input id="subject-name" type="text" placeholder="e.g. Biology" required />
+          </label>
+
+          <label>
+            Key answers
+            <textarea
+              id="subject-key-answers"
+              rows="7"
+              placeholder="Type one answer per line or separate with commas"
+              required
+            ></textarea>
+          </label>
+
+          <button type="submit">Add subject</button>
+        </form>
+
+        <div id="subject-list" class="subject-list" aria-live="polite"></div>
+      </aside>
+
+      <main class="content">
+        <section id="empty-state" class="empty-state hidden">
+          <h2>No subject selected</h2>
+          <p>Create a new subject on the left to start checking answers.</p>
+        </section>
+
+        <section id="checker-panel" class="checker-panel hidden">
+          <header class="panel-header">
+            <div>
+              <p class="eyebrow">Answer checker</p>
+              <h2 id="selected-subject-name">Subject</h2>
+            </div>
+          </header>
+
+          <div class="section-block">
+            <div class="section-title-row">
+              <h3>Key answers</h3>
+            </div>
+            <div id="key-answer-list" class="tag-list"></div>
+          </div>
+
+          <div class="section-block student-block">
+            <label for="student-answers">Student answers</label>
+            <textarea
+              id="student-answers"
+              rows="8"
+              placeholder="Enter the student's answers, one per line or separated by commas"
+            ></textarea>
+          </div>
+
+          <div class="results-grid">
+            <div class="result-card match-card">
+              <div class="result-header">
+                <h3>Match</h3>
+                <span id="match-count" class="count-badge">0</span>
+              </div>
+              <ul id="match-list" class="result-list"></ul>
+            </div>
+
+            <div class="result-card mismatch-card">
+              <div class="result-header">
+                <h3>Unmatch</h3>
+                <span id="unmatch-count" class="count-badge">0</span>
+              </div>
+              <ul id="unmatch-list" class="result-list"></ul>
+            </div>
+
+            <div class="result-card missing-card">
+              <div class="result-header">
+                <h3>Missing</h3>
+                <span id="missing-count" class="count-badge">0</span>
+              </div>
+              <ul id="missing-list" class="result-list"></ul>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="subject-context-menu" class="context-menu hidden" role="menu">
+      <button id="delete-subject-action" type="button" role="menuitem">Delete subject</button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
